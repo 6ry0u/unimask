@@ -1,7 +1,6 @@
 import web3 from './web3'
 import axios from 'axios'
 
-const version = web3.version.api
 const API_URL = 'http://api.etherscan.io/api?module=contract&action=getabi&address='
 const apikey = process.env.REACT_APP_API_KEY
 

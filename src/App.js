@@ -1,38 +1,34 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 // import {} from 'rimble-ui'
 
 // import './App.css';
 import getContract from './api'
 
-class App extends Component {
-  state = {
-    methods: {}
+const App = () => {
+  const [abi, setAbi] = useState([])
+
+  const fetchAbi = async address => {
+    const contract = await getContract(address)
+    setAbi(contract._jsonInterface)
   }
 
-  async componentDidMount () {
-    const { methods } = await getContract('0x8B3d70d628Ebd30D4A2ea82DB95bA2e906c71633')
-    this.setState({ methods })
-  }
+  useEffect(() => {
+    fetchAbi('0x8B3d70d628Ebd30D4A2ea82DB95bA2e906c71633')
+  }, [])
 
-  renderList = obj => Object.keys(obj).map((key, index) => {
-    const re = /[a-z]+\(.*\)/gi
-    if (key.match(re)) {
-      return (
-        <div key={index}>{key}</div>
-      )
-    }
-  })
-
-  render () {
+  const renderList = arr => arr.map((el, i) => {
     return (
-      <div>
-        <h1>Unimask</h1>
-        <div>
-          {this.renderList(this.state.methods)}
-        </div>
+      <div key={i}>
+        <div>{el.name}</div>
       </div>
     )
-  }
+  })
+  return (
+    <div>
+      <h1>Unimask</h1>
+      <div>{renderList(abi)}</div>
+      <div />
+    </div>
+  )
 }
-
 export default App
