@@ -6,7 +6,6 @@ const apikey = process.env.REACT_APP_API_KEY
 
 const getContract = async address => {
   const { data: { result } } = await axios.get(`${API_URL}${address}&apikey=${apikey}`)
-  // console.log(result)
   return new web3.eth.Contract(JSON.parse(result), address)
 }
 

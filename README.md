@@ -1,5 +1,5 @@
 # Unimask
-universal mask to interact semi-automatically with any deployed Ethereum smart contract.
+Universal mask to interact semi-automatically with any deployed Ethereum smart contract.
 
 ## TO DOS
 - [ ] Display functions names after copy pasting a contract address
